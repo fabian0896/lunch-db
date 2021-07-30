@@ -120,11 +120,11 @@ const Company = setupCompany(models);
         name: 'Fabian David Dueñas',
         cardId: '12',
         identification: '1144089680',
-        company: company
+        company
     });
 
 
     const results = await User.getAll();
-    console.log(results[0]);
+    console.log(results[0].toJSON());
 
 })();

@@ -35,7 +35,7 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         delete userData.company;
 
         const user = await UserModel.create(userData);
-
+        if(!company) return user;
         const result = await user.setCompany(company);
         return result;
     }

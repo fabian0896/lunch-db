@@ -30,8 +30,15 @@ function setupCompany ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         return CompanyModel.create(values);
     }
 
+    
+    function getList () {
+        return CompanyModel.findAll({
+            include: UserModel,
+        });
+    }
     return {
-        create
+        create,
+        getList
     }
 }
 
