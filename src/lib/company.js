@@ -75,8 +75,10 @@ function setupCompany ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * 
      * @returns {Promise<Model>} 
      */
-    function getList () {
-        return CompanyModel.findAll();
+    function getList (raw = false) {
+        return CompanyModel.findAll({
+            raw
+        });
     }
 
     /**

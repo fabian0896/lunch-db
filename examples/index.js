@@ -20,6 +20,8 @@ const path = require('path');
         company: company
     })
 
+    Company.ge
+
     const product1 = await Product.create({
         name: 'Almuerzo Completo',
         price: 7000
