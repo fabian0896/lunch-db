@@ -25,9 +25,9 @@ const setupDatabase = require('./src/lib/db');
 module.exports = async function db (config, syncOptions) {
     config = defaults(config, {
         logging: false
-    })
+    });
 
-    const sequelize = setupDatabase(config)
+    const sequelize = setupDatabase(config);
      
     const UserModel = setupUserModel(sequelize);
     const OrderModel = setupOrderModel(sequelize);
@@ -52,7 +52,7 @@ module.exports = async function db (config, syncOptions) {
         CompanyModel, 
         ProductModel, 
         DetailModel 
-    }
+    };
     
     const User = setupUser(models);
     const Company = setupCompany(models);
@@ -66,5 +66,5 @@ module.exports = async function db (config, syncOptions) {
         Company,
         Product,
         Order
-    }
+    };
 }

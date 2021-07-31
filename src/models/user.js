@@ -28,7 +28,7 @@ function setupUserModel (sequelize) {
         }
     });
 
-    return User
+    return User;
 }
 
 module.exports = setupUserModel;
