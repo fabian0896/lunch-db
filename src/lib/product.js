@@ -57,6 +57,10 @@ function setProduct ({ ProductModel }) {
         });
     }
 
+    /**
+     * 
+     * @returns {Promise<Array<Model>>}
+     */
     function getAll () {
         return ProductModel.findAll({
             where: {
@@ -66,11 +70,21 @@ function setProduct ({ ProductModel }) {
         });
     }
 
+    /**
+     * 
+     * @param {number} productId 
+     * @returns {Promise<Model>}
+     */
+    function getById (productId) {
+        return ProductModel.findByPk(productId);
+    }
+
     return {
         update,
         destroy,
         create,
-        getAll
+        getAll,
+        getById
     }
 }
 
