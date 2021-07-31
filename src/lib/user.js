@@ -144,6 +144,16 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         })
     }
 
+    /**
+     * 
+     * @param {Model} user 
+     * @param {Model} order 
+     * @returns 
+     */
+    function addOrder (user, order) {
+        return user.addOrder(order);
+    }
+
     return {
         create,
         update,
@@ -151,7 +161,8 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         getById,
         getByCardId,
         getByIdentification,
-        getAll
+        getAll,
+        addOrder
     }
 }
 

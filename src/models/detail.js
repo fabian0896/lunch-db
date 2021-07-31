@@ -17,6 +17,8 @@ function setupDetailModel (sequelize) {
             allowNull: false,
             defaultValue: 1
         }
+    },{
+        timestamps: false
     });
     return Detail;
 }

@@ -40,7 +40,7 @@ function setupOrder ({UserModel, OrderModel, ProductModel, CompanyModel}) {
             }); 
         }
         
-        return order; 
+        return order;
     }
 
     return {
