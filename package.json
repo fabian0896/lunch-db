@@ -14,7 +14,6 @@
   "dependencies": {
     "defaults": "^1.0.3",
     "sequelize": "^6.6.5",
-    "serialport": "^9.2.0",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {

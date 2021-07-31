@@ -8,7 +8,7 @@ const path = require('path');
     const { User, Company, Product, Order } = await db({
         dialect: 'sqlite',
         storage: path.join(__dirname, 'database.sqlite')
-    });
+    })
 
     const company = await Company.create({
         name: 'Almuercitos S.A.S'
