@@ -44,7 +44,7 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * 
      * @param {number} user
      * @param {UserData} updateData
-     * @returns {Promise<Model>}  
+     * @returns {Promise<Array<number, number>>}   
      */
     function update(userId, updateData){
         return UserModel.update(updateData, {
@@ -58,7 +58,7 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
     /**
      * 
      * @param {string} userId
-     * @returns {Promise<Model>}  
+     * @returns {Promise<number>}  
      */
     function destroy (userId) {
         return UserModel.destroy({
@@ -101,8 +101,7 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
                 {
                     model: OrderModel,
                     include: ProductModel,
-                    limit: 10,
-                    order: ['createdAt', 'DESC']
+                    limit: 10
                 }
             ]
         })

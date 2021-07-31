@@ -12,7 +12,6 @@ const { Model } = require('sequelize');
 /**
  * 
  * @param {Models} models
- * @param {number} numero 
  */
 function setupCompany ({UserModel, OrderModel, ProductModel, CompanyModel}) {
     /**
@@ -30,15 +29,79 @@ function setupCompany ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         return CompanyModel.create(values);
     }
 
-    
-    function getList () {
-        return CompanyModel.findAll({
-            include: UserModel,
+      /**
+     * 
+     * @param {number} companyId 
+     * @param {CompanyData} updateData 
+     * @returns {Promise<Array<number, number>>} 
+     */
+    function update (companyId, updateData) {
+        return CompanyModel.update(updateData, {
+            where: {
+                id: companyId
+            }
+        })
+    }
+
+    /**
+     * 
+     * @param {number} companyId 
+     * @returns {Promise<number>}
+     */
+    function destroy (companyId) {
+        return CompanyModel.destroy({
+            where:{
+                id: companyId
+            }
         });
     }
+
+    /**
+     * 
+     * @returns {Promise<Model>} 
+     */
+    function getListWithUsers () {
+        return CompanyModel.findAll({
+            include: {
+                model: UserModel,
+                where:{
+                    active: true
+                }
+            }
+        })
+    }
+
+    /**
+     * 
+     * @returns {Promise<Model>} 
+     */
+    function getList () {
+        return CompanyModel.findAll();
+    }
+
+    /**
+     * 
+     * @param {number} companyId 
+     * @returns {Promise<Model>}
+     */
+    function getById (companyId) {
+        return CompanyModel.findByPk(companyId, {
+            include: {
+                model: UserModel,
+                where: {
+                    active: true
+                }
+            }
+        });
+    }
+
     return {
         create,
-        getList
+        getListWithUsers,
+        getList,
+        destroy,
+        update,
+        getById
     }
 }
 

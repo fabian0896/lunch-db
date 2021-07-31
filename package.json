@@ -12,7 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "rfid": "file:../serial-rfid",
     "sequelize": "^6.6.5",
+    "serialport": "^9.2.0",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
