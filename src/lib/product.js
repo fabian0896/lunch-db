@@ -61,7 +61,8 @@ function setProduct ({ ProductModel }) {
         return ProductModel.findAll({
             where: {
                 active: true
-            }
+            },
+            order: [['createdAt', 'DESC']]
         });
     }
 

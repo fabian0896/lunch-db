@@ -20,9 +20,9 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * @typedef UserData
      * @property {string} name
      * @property {string} cardId
-     * @property {boolean} [active]
-     * @property {number} identification,
      * @property {ModelCtor<Model>} company
+     * @property {boolean} [active]
+     * @property {number} [identification],
      */
 
     /**
