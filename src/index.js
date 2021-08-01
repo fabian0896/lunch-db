@@ -62,6 +62,7 @@ const rfid = new Rfid({
 
 
 (async () => {
+    
     const product = await Product.create({
         name: 'Papa Rellena',
         price: 3000
