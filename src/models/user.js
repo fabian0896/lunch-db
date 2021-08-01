@@ -13,8 +13,8 @@ function setupUserModel (sequelize) {
         },
         identification: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
+            allowNull: true,
+            unique: false
         },
         active: {
             type: DataTypes.BOOLEAN,
@@ -28,7 +28,7 @@ function setupUserModel (sequelize) {
         }
     });
 
-    return User
+    return User;
 }
 
 module.exports = setupUserModel;

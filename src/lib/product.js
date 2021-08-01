@@ -57,19 +57,34 @@ function setProduct ({ ProductModel }) {
         });
     }
 
+    /**
+     * 
+     * @returns {Promise<Array<Model>>}
+     */
     function getAll () {
         return ProductModel.findAll({
             where: {
                 active: true
-            }
+            },
+            order: [['createdAt', 'DESC']]
         });
+    }
+
+    /**
+     * 
+     * @param {number} productId 
+     * @returns {Promise<Model>}
+     */
+    function getById (productId) {
+        return ProductModel.findByPk(productId);
     }
 
     return {
         update,
         destroy,
         create,
-        getAll
+        getAll,
+        getById
     }
 }
 

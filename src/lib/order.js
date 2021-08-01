@@ -43,8 +43,26 @@ function setupOrder ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         return order;
     }
 
+    /**
+     * 
+     * @returns {Promise<Array<Model>>}
+     */
+    function getAll () {
+        return OrderModel.findAll({
+            include: {
+                model: ProductModel,
+                through:{
+                    attributes: ['price', 'quantity']
+                }
+            },
+            limit: 30,
+            order: [['createdAt', 'DESC']]
+        })
+    }
+
     return {
-        create
+        create,
+        getAll
     }
 }
 

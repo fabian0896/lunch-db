@@ -7,7 +7,7 @@ const { Sequelize,  ModelCtor, Model} = require('sequelize');
  */
 function setupOrderModel (sequelize) {
     const Order = sequelize.define('order', {});
-    return Order
+    return Order;
 }
 
 module.exports = setupOrderModel;
