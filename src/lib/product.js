@@ -61,12 +61,13 @@ function setProduct ({ ProductModel }) {
      * 
      * @returns {Promise<Array<Model>>}
      */
-    function getAll () {
+    function getAll (raw=false) {
         return ProductModel.findAll({
             where: {
                 active: true
             },
-            order: [['createdAt', 'DESC']]
+            order: [['createdAt', 'DESC']],
+            raw
         });
     }
 
