@@ -23,6 +23,11 @@ function setupProductModel (sequelize) {
         image: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        favorite: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false,
+            allowNull: false
         }
     });
     return Product;

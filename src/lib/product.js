@@ -34,6 +34,20 @@ function setProduct ({ ProductModel }) {
     /**
      * 
      * @param {number} productId 
+     * @param {boolean} favorite 
+     * @returns {Promise<Model>}
+     */
+    function setfavorite (productId, favorite) {
+        return ProductModel.update({ favorite }, {
+            where: {
+                id: productId
+            }
+        });
+    }
+
+    /**
+     * 
+     * @param {number} productId 
      * @returns {Promise<number>}
      */
     function destroy (productId) {
@@ -73,6 +87,19 @@ function setProduct ({ ProductModel }) {
 
     /**
      * 
+     * @returns {Promise<Array<Model>>}
+     */
+    function getFavorites (raw=false) {
+        return ProductModel.findAll({
+            where: {
+                favorite: true
+            },
+            raw
+        });
+    }
+
+    /**
+     * 
      * @param {number} productId 
      * @returns {Promise<Model>}
      */
@@ -85,7 +112,9 @@ function setProduct ({ ProductModel }) {
         destroy,
         create,
         getAll,
-        getById
+        getById,
+        getFavorites,
+        setfavorite
     }
 }
 
