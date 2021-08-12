@@ -137,7 +137,7 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * 
      * @returns {Promise<Array<Model>>} 
      */
-    function getAll () {
+    function getAll (raw=false) {
         return UserModel.findAll({
             where: {
                 active: true,
@@ -145,8 +145,9 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
             include: {
                 model: CompanyModel,
                 attributes: ['name']
-            }
-        })
+            },
+            raw
+        });
     }
 
     /**
