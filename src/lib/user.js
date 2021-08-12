@@ -146,8 +146,9 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
                 model: CompanyModel,
                 attributes: ['name']
             },
+            raw: true
         });
-        if (raw) {
+        if (false) {
             return result.map((u) => u.toJSON());
         }
         return result;
