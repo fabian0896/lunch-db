@@ -31,8 +31,12 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * @returns {Promise<Model>} 
      */
     async function create (userData) {
-        const { company } = userData;
+        let { company } = userData;
         delete userData.company;
+
+        if (typeof company === 'number') {
+            company = await CompanyModel.findByPk(company);
+        }
 
         const user = await UserModel.create(userData);
         if(!company) return user;
@@ -92,7 +96,7 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * @param {string} cardId
      * @returns {Promise<Model>} 
      */
-    function getByCardId(cardId) {
+    function getByCardId(cardId, raw=false) {
         return UserModel.findOne({
             where:{
                 cardId,
@@ -103,7 +107,8 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
                     include: ProductModel,
                     limit: 10
                 }
-            ]
+            ],
+            raw
         })
     }
 
