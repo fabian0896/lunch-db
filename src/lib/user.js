@@ -137,8 +137,8 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * 
      * @returns {Promise<Array<Model>>} 
      */
-    function getAll (raw=false) {
-        return UserModel.findAll({
+    async function getAll (raw=false) {
+        const result = await UserModel.findAll({
             where: {
                 active: true,
             },
@@ -146,8 +146,11 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
                 model: CompanyModel,
                 attributes: ['name']
             },
-            raw
         });
+        if (raw) {
+            return result.map((u) => u.toJSON());
+        }
+        return result;
     }
 
     /**
