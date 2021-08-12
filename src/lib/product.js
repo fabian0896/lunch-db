@@ -48,6 +48,22 @@ function setProduct ({ ProductModel }) {
     /**
      * 
      * @param {number} productId 
+     * @returns {Promise<Model>}
+     */
+    async function toggleFavorite (productId) {
+        const product = await getById(productId);
+        const favorite = !product.favorite;
+        const res = await ProductModel.update({ favorite }, {
+            where: {
+                id: productId
+            }
+        });
+        return res;
+    }
+
+    /**
+     * 
+     * @param {number} productId 
      * @returns {Promise<number>}
      */
     function destroy (productId) {
@@ -114,7 +130,8 @@ function setProduct ({ ProductModel }) {
         getAll,
         getById,
         getFavorites,
-        setfavorite
+        setfavorite,
+        toggleFavorite
     }
 }
 
