@@ -50,12 +50,20 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * @param {UserData} updateData
      * @returns {Promise<Array<number, number>>}   
      */
-    function update(userId, updateData){
-        return UserModel.update(updateData, {
+    async function update(userId, updateData){
+        let { company } = updateData;
+        delete updateData.company;
+        if ( typeof company === 'object') { 
+            updateData.companyId = company.id;
+        } else {
+            updateData.companyId = company
+        }
+        const user = await UserModel.update(updateData, {
             where: {
                 id: userId
             }
-        })
+        });
+        return user;
     }
 
 
