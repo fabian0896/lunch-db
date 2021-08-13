@@ -9,7 +9,11 @@ function setupUserModel (sequelize) {
     const User = sequelize.define('user', {
         name: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            set(val) {
+                const lowerName = val.toLowerCase();
+                this.setDataValue('name', lowerName);
+            }
         },
         identification: {
             type: DataTypes.INTEGER,

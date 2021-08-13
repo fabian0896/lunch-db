@@ -1,5 +1,5 @@
 'use strict'
-const { ModelCtor, Model } = require('sequelize');
+const { ModelCtor, Model, Op } = require('sequelize');
 
 /**
  * @typedef Models
@@ -163,6 +163,19 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         return user.addOrder(order);
     }
 
+
+    function searchByName(name) {
+        return UserModel.findAll({
+            where: {
+                active: true,
+                name: {
+                    [Op.like]: `%${name}%`,
+                },
+            },
+            raw: true
+        });
+    }
+
     return {
         create,
         update,
@@ -171,7 +184,8 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         getByCardId,
         getByIdentification,
         getAll,
-        addOrder
+        addOrder,
+        searchByName
     }
 }
 
