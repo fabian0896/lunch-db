@@ -176,7 +176,6 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
                     [Op.like]: `%${name}%`,
                 },
             },
-            raw: true,
             include: {
                 model: CompanyModel,
                 attributes: ['name'],
