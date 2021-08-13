@@ -163,9 +163,13 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         return user.addOrder(order);
     }
 
-
-    function searchByName(name) {
-        return UserModel.findAll({
+    /**
+     * 
+     * @param {string} name 
+     * @returns {Promise<Array>} 
+     */
+    async function searchByName(name) {
+        const results = await UserModel.findAll({
             where: {
                 active: true,
                 name: {
@@ -173,8 +177,12 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
                 },
             },
             raw: true,
-            include: CompanyModel
+            include: {
+                model: CompanyModel,
+                attributes: ['name'],
+            }
         });
+        return results.map(r => r.toJSON());
     }
 
     return {
