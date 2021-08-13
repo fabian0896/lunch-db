@@ -78,17 +78,18 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * @param {string} userId
      * @returns {Promise<Model>} 
      */
-    function getById(userId) {
-        return UserModel.findByPk(userId, {
+    async function getById(userId) {
+        const result = await UserModel.findByPk(userId, {
             include: [
                 {
                     model: OrderModel,
                     include: ProductModel,
                     limit: 10,
-                    order: ['createdAt', 'DESC']
+                    order: [['createdAt', 'DESC']]
                 }
             ]
-        })
+        });
+        return result.toJSON();
     }
 
     /**
