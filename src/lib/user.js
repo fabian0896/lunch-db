@@ -86,6 +86,9 @@ function setupUser ({UserModel, OrderModel, ProductModel, CompanyModel}) {
                     include: ProductModel,
                     limit: 10,
                     order: [['createdAt', 'DESC']]
+                },
+                {
+                    model: CompanyModel
                 }
             ]
         });
