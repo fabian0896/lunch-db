@@ -64,10 +64,6 @@ function setupCompany ({UserModel, OrderModel, ProductModel, CompanyModel}) {
         const result = await CompanyModel.findAll({
             include: {
                 model: UserModel,
-                where:{
-                    active: true
-                },
-                require: false
             }
         });
         return result.map((c) => c.toJSON());
