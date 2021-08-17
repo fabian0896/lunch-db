@@ -60,7 +60,7 @@ function setupCompany ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * 
      * @returns {Promise<Model>} 
      */
-    function getListWithUsers () {
+    async function getListWithUsers () {
         const result = await CompanyModel.findAll({
             include: {
                 model: UserModel,
