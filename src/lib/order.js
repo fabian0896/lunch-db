@@ -29,18 +29,26 @@ function setupOrder ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * @param {Array<ProductValue>} productList
      * @returns {Model} 
      */
-    async function create (productList) {
+    async function create (userId ,productList) {
+        if(productList.length === 0) throw new Error('Debe haber por lo menos un producto');
+        if(!userId) throw new Error('No se detecto ningun usuario');
+
+        const user = await UserModel.findByPk(userId);
+
+        if(!user) throw new Error('El usuario no existe');
+
         const order = await OrderModel.create({});
         for(let product of productList){
-            await order.addProduct(product.product, {
+            const actualProduct = await ProductModel.findByPk(product.id)
+            await order.addProduct(actualProduct, {
                 through:{
-                    price: product.price || product.product.price,
-                    quantity: product.quantity || product.product.quantity
+                    price: product.details?.price || actualProduct.price,
+                    quantity: product.details?.quantity || actualProduct.quantity
                 }
             }); 
         }
-        
-        return order;
+        await user.addOrder(order);
+        return order.toJSON();
     }
 
     /**
