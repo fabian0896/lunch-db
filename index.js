@@ -42,8 +42,8 @@ module.exports = async function db (config, syncOptions) {
     CompanyModel.hasMany(UserModel);
     UserModel.belongsTo(CompanyModel);
     
-    OrderModel.belongsToMany(ProductModel, {through: DetailModel});
-    ProductModel.belongsToMany(OrderModel, {through: DetailModel});
+    OrderModel.belongsToMany(ProductModel, {through: DetailModel, uniqueKey: 'id'});
+    ProductModel.belongsToMany(OrderModel, {through: DetailModel, uniqueKey: 'id'});
     
     
     const models = {
