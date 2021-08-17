@@ -61,14 +61,15 @@ function setupCompany ({UserModel, OrderModel, ProductModel, CompanyModel}) {
      * @returns {Promise<Model>} 
      */
     function getListWithUsers () {
-        return CompanyModel.findAll({
+        const result = await CompanyModel.findAll({
             include: {
                 model: UserModel,
                 where:{
                     active: true
                 }
             }
-        })
+        });
+        return result.map((c) => c.toJSON());
     }
 
     /**
