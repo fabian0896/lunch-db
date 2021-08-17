@@ -66,7 +66,8 @@ function setupCompany ({UserModel, OrderModel, ProductModel, CompanyModel}) {
                 model: UserModel,
                 where:{
                     active: true
-                }
+                },
+                require: false
             }
         });
         return result.map((c) => c.toJSON());
